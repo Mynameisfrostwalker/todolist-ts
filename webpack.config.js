@@ -5,6 +5,8 @@ module.exports = {
     mode: "development",
     entry: {
         index: "./src/scripts/index.ts",
+        todoItems: "./src/scripts/todo-items.ts",
+        projects: "./src/scripts/projects.ts",
     },
     module: {
         rules: [

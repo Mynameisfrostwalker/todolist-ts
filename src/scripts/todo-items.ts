@@ -5,10 +5,10 @@ class Items {
     private description: string;
     private dueDate: Date;
     private priority: string;
-    constructor(title: string, description: string, dueDate: Date, priority: string) {
+    constructor(title: string, description: string, dueDate: string, priority: string) {
         this.title = title;
         this.description = description;
-        this.dueDate = dueDate;
+        this.dueDate = new Date(dueDate);
         this.priority = priority;
     }
 
@@ -16,10 +16,10 @@ class Items {
         return this[name];
     }
 
-    public setProperty(name: Properties, value: string | Date): void {
-        if(name === "dueDate" && typeof value === "object") {
-            this[name] = value;
-        } else if (name !== "dueDate" && typeof value === "string") {
+    public setProperty(name: Properties, value: string): void {
+        if(name === "dueDate") {
+            this[name] = new Date(value);
+        } else {
             this[name] = value
         }
     }
