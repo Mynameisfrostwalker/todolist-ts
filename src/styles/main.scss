@@ -70,13 +70,28 @@ nav {
     @include mixins.size(200px, 220px, false);
     @include mixins.flex(column, flex-start, space-between);
 
-    background-color: theme.$color-items;
     color: theme.$color-text-2;
     box-shadow: 2px 2px 5px 1px  black;
 
     .control {
         @include mixins.flex(row, center, space-between);
         @include mixins.size(100%, min-content);
+    }
+
+    .alter-items * {
+        padding: 5px;
+    }
+
+    &.high {
+        background-color: theme.$color-items-high; 
+    }
+
+    &.medium {
+        background-color: theme.$color-items-medium;
+    }
+
+    &.low {
+        background-color: theme.$color-items-low;
     }
 }
 
@@ -91,4 +106,8 @@ input[type="checkbox"] {
     &:checked {
         background-color: theme.$color-nav;
     }
+}
+
+.active {
+    color: theme.$color-text-2;
 }
