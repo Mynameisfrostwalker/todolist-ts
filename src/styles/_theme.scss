@@ -1,0 +1,9 @@
+@use "sass:color";
+
+$color-header: #0d92f2;
+$color-nav: #F20D92;
+$color-main: #92F20D;
+$color-text: #000000;
+$color-text-2: #ffffff;
+$color-items: color.complement($color-main);
+
