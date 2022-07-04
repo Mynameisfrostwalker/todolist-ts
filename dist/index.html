@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todolist</title>
-<link rel="icon" href="favicon.ico"><script defer src="vendors-node_modules_date-fns_esm_isThisWeek_index_js-node_modules_date-fns_esm_isToday_index_js.bundle.js"></script><script defer src="vendors-node_modules_date-fns_esm_formatDistanceToNow_index_js.bundle.js"></script><script defer src="vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_css-loader_dist_runt-2de1a3.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="todoItems.bundle.js"></script><script defer src="projects.bundle.js"></script><script defer src="displayItems.bundle.js"></script></head>
+<link rel="icon" href="favicon.ico"><script defer src="vendors-node_modules_date-fns_esm_isThisWeek_index_js-node_modules_date-fns_esm_isToday_index_js.bundle.js"></script><script defer src="vendors-node_modules_date-fns_esm_formatDistanceToNow_index_js.bundle.js"></script><script defer src="vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_css-loader_dist_runt-2de1a3.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="todoItems.bundle.js"></script><script defer src="projects.bundle.js"></script><script defer src="displayItems.bundle.js"></script><script defer src="domEvents.bundle.js"></script></head>
 <body>
 
     <header>
@@ -44,7 +44,43 @@
             </div>
         </div>
     -->
-        <div class="add-item"><i class="fas fa-plus add"></i></div>
+        <div class="add-item">
+            
+            <div class="add-button form-show">
+                <i class="fas fa-plus add"></i>
+            </div>
+
+            <div class="item form none">
+
+                <p>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                </p>
+
+                <p>
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" name="dueDate" id="dueDate">
+                </p>
+
+                <p>
+                    <select name="priority" id="priority">
+                        <option selected disabled>Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="20" rows="2"></textarea>
+                </p>
+
+                <div class="add-button">
+                    <i class="fas fa-plus add"></i>
+                </div>
+            </div>
+        </div>
     </main>
 
 </body>

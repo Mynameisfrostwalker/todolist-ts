@@ -38,3 +38,12 @@
     font-size: $size;
     font-weight: $weight;
 }
+
+@mixin add {
+    cursor: pointer;
+    transition: all 1.5s;
+
+    .add:hover {
+        transform: scale(0.7);
+    }
+}

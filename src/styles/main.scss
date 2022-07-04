@@ -28,14 +28,9 @@ main {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 
-    .add-item {
+    .add-item>.add-button {
         @include mixins.font(calc(10px + 3vw));
-        cursor: pointer;
-        transition: all 1.5s;
-
-        .add:hover {
-            transform: scale(0.7);
-        }
+        @include mixins.add 
     }
 }
 
@@ -70,6 +65,7 @@ nav {
     @include mixins.size(200px, 220px, false);
     @include mixins.flex(column, flex-start, space-between);
 
+    background-color: theme.$color-text;
     color: theme.$color-text-2;
     box-shadow: 2px 2px 5px 1px  black;
 
@@ -108,6 +104,34 @@ input[type="checkbox"] {
     }
 }
 
+.form {
+
+    @include mixins.font(0.7rem);
+
+    p {
+        @include mixins.box-control(0, 5px);
+    }
+
+    input {
+        @include mixins.size(165px, null, false);
+    }
+
+    .add-button {
+        @include mixins.add;
+        @include mixins.font(1rem);
+    }
+}
+
+textarea {
+    @include mixins.size(165px, null, false);
+    
+    resize: none;
+}
+
 .active {
     color: theme.$color-text-2;
+}
+
+.none {
+    display: none;
 }
