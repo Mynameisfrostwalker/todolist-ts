@@ -1,5 +1,6 @@
 import { isToday, isThisWeek } from "date-fns";
 import { Items } from "./todo-items";
+import { displayTodo } from "./displayItems";
 
 interface ProjectsInterface {
     [index: string]: Items[],
@@ -85,6 +86,7 @@ function getProject(name: string): Items[] {
 function updateProject(name: string, value: Items): void {
     projectsObj[name].push(value);
     putIntoDateProjects(value);
+    displayTodo();
 }
 
 function deleteProject(name: string): void {

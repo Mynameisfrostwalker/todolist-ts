@@ -17,6 +17,13 @@ function showForm() {
     form?.addEventListener("submit", submitForm);
 }
 
+function removeForm() {
+    const formContainer = document.querySelector(".form");
+    formShowButton?.classList.remove("none");
+    formContainer?.classList.add("none");
+    const form = document.querySelector("form");
+}
+
 function submitForm(e: Event) {
 
         e.preventDefault();
@@ -28,8 +35,9 @@ function submitForm(e: Event) {
 
             for(let i = 0; i < 4; i++) {
                 const element = e.target[i]
-                if(element instanceof HTMLInputElement) {
+                if(element instanceof HTMLInputElement || element instanceof HTMLSelectElement || element instanceof HTMLTextAreaElement) {
                     arr[i] = element.value;
+                    element.value = "";
                 }
             }
 
@@ -41,6 +49,7 @@ function submitForm(e: Event) {
             const project = getCurrentProject();
             if(project) {
                 updateProject(project, item);
+                removeForm();
             }
         }
 }
