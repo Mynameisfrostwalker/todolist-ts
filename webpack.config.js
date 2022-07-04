@@ -8,7 +8,7 @@ module.exports = {
         todoItems: "./src/scripts/todo-items.ts",
         projects: "./src/scripts/projects.ts",
         displayItems: "./src/scripts/displayItems.ts",
-        domEvents: "./src/scripts/domEvents.ts",
+        todoEvent: "./src/scripts/todoEvent.ts",
     },
     module: {
         rules: [

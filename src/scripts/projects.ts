@@ -83,9 +83,11 @@ function getProject(name: string): Items[] {
     return projectsObj[name]
 }
 
-function updateProject(name: string, value: Items): void {
-    projectsObj[name].push(value);
-    putIntoDateProjects(value);
+function updateProject(name: string, value?: Items): void {
+    if(value) {
+        projectsObj[name].push(value);
+        putIntoDateProjects(value);
+    }
     displayTodo();
 }
 

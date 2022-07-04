@@ -1,7 +1,6 @@
 import { Items } from "./todo-items";
-import { updateProject } from "./projects";
+import { getProject, updateProject } from "./projects";
 
-const formShowButton = document.querySelector(".form-show");
 
 function getCurrentProject() {
     const project = document.querySelector(".active");
@@ -10,6 +9,7 @@ function getCurrentProject() {
 
 
 function showForm() {
+    const formShowButton = document.querySelector(".form-show");
     const formContainer = document.querySelector(".form");
     formShowButton?.classList.add("none");
     formContainer?.classList.remove("none");
@@ -18,6 +18,7 @@ function showForm() {
 }
 
 function removeForm() {
+    const formShowButton = document.querySelector(".form-show");
     const formContainer = document.querySelector(".form");
     formShowButton?.classList.remove("none");
     formContainer?.classList.add("none");
@@ -54,6 +55,28 @@ function submitForm(e: Event) {
         }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    formShowButton?.addEventListener("click", showForm);
-})
+function deleteForm(e: Event) {
+    const element = e.target;
+    if(element instanceof HTMLElement) {
+
+        const projectName = getCurrentProject();
+        const item = element?.parentElement?.parentElement?.parentElement;
+        const id = item?.id;
+
+        if(projectName) {
+            const project = getProject(projectName);
+            for(let i = 0; i < project.length; i++) {
+                const item = project[i];
+                if(item.getProperty("id") === id) {
+                    project.splice(i, 1);
+                }
+            }
+            updateProject(projectName);
+        }
+    }
+
+
+}
+
+
+export { showForm, deleteForm }

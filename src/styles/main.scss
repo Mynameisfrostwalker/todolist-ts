@@ -74,8 +74,12 @@ nav {
         @include mixins.size(100%, min-content);
     }
 
-    .alter-items * {
-        padding: 5px;
+    .alter-items {
+        @include mixins.flex(row, center, space-between);
+    }
+
+    .alter-items div {
+        @include mixins.box-control(0, 5px, none);
     }
 
     &.high {
@@ -141,4 +145,8 @@ textarea {
 
 .none {
     display: none;
+}
+
+svg {
+    pointer-events: none;
 }

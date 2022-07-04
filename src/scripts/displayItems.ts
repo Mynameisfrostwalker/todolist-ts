@@ -1,6 +1,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { Items } from "./todo-items"
 import { getProject } from "./projects";
+import { deleteForm } from "./todoEvent";
 
 function getCurrentProject() {
     const project = document.querySelector(".active");
@@ -32,12 +33,19 @@ function createControls(item: Items) {
 
     const alterDiv = document.createElement("div");
     alterDiv.classList.add("alter-items");
+
+    const div1 = document.createElement("div");
     const i1 = document.createElement("i");
-    i1.classList.add("fas", "fa-edit")
-    alterDiv.appendChild(i1);
+    i1.classList.add("fas", "fa-edit");
+    div1.appendChild(i1);
+    alterDiv.appendChild(div1);
+
+    const div2 = document.createElement("div");
     const i2 = document.createElement("i");
     i2.classList.add("fas", "fa-trash-alt");
-    alterDiv.appendChild(i2);
+    div2.addEventListener("click", deleteForm, true);
+    div2.appendChild(i2);
+    alterDiv.appendChild(div2);
     controls.appendChild(alterDiv);
 
     return controls
@@ -49,6 +57,18 @@ function displayTodo() {
     const projectName = getCurrentProject();
     const main = document.querySelector("main");
     const add = document.querySelector(".add-item");
+    const children = main?.children;
+    const arr: Element[] = [];
+    if(children) {
+        for (let i = 0; i < children.length; i++) {
+            if(children[i].classList.contains("todo")) {
+                arr.push(children[i])
+            }
+        }
+        for (let i = 0; i < arr.length; i++) {
+            arr[i].remove();
+        }
+    }
 
     if(projectName) {
 
@@ -61,6 +81,8 @@ function displayTodo() {
             const divItem = document.createElement("div");
             divItem.classList.add("item");
             divItem.classList.add(priority);
+            divItem.classList.add("todo");
+            divItem.id = item.getProperty("id");
             divItem.appendChild(createInfo(item));
             divItem.appendChild(createControls(item));
             main?.insertBefore(divItem, add);

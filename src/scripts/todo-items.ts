@@ -1,6 +1,7 @@
 import { correctDateProjects } from "./projects";
+import uniqid from "uniqid";
 
-type Properties = "title" | "description" | "dueDate" | "priority" | "complete";
+type Properties = "title" | "description" | "dueDate" | "priority" | "complete" | "id";
 
 class Items {
     private title: string;
@@ -8,6 +9,7 @@ class Items {
     private dueDate: string;
     private priority: string;
     private complete: string;
+    private id = uniqid();
     constructor(title: string, description: string, dueDate: string, priority: string, complete: string) {
         this.title = title;
         this.description = description;
