@@ -9,6 +9,7 @@ module.exports = {
         projects: "./src/scripts/projects.ts",
         displayItems: "./src/scripts/displayItems.ts",
         domEvents: "./src/scripts/domEvents.ts",
+        pubsub: "./src/scripts/pubsub.ts",
     },
     module: {
         rules: [

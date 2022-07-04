@@ -120,11 +120,18 @@ input[type="checkbox"] {
         @include mixins.add;
         @include mixins.font(1rem);
     }
+
+    button {
+        background-color: theme.$color-text;
+        color: theme.$color-text-2;
+        outline: none;
+        border: none;
+    }
 }
 
 textarea {
     @include mixins.size(165px, null, false);
-    
+
     resize: none;
 }
 
