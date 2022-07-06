@@ -53,8 +53,21 @@ nav {
         margin-bottom: 10px;
         cursor: pointer;
 
+
         &:hover {
             color: theme.$color-text-2;
+        }
+    }
+
+    .projects-list {
+        @include mixins.box-control(5px, 0);
+
+        li {
+            @include mixins.flex(row, center, space-around);
+
+            * {
+                @include mixins.box-control(0, 1px);
+            }
         }
     }
 
@@ -130,6 +143,17 @@ input[type="checkbox"] {
         color: theme.$color-text-2;
         outline: none;
         border: none;
+    }
+}
+
+.add-projects-list {
+    @include mixins.flex(row, center, space-between);
+
+    input {
+        @include mixins.size(165px, null, false);
+        @include mixins.font(1rem);
+
+        margin-left: 10px;     
     }
 }
 

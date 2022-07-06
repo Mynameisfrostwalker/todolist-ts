@@ -1,15 +1,18 @@
 import "../styles/main.scss";
 import "@fortawesome/fontawesome-free/js/all";
 import { showForm } from "./todoEvent";
-import { changeProject } from "./projectEvent";
-
-const formShowButton = document.querySelector(".form-show");
-const projects = document.querySelectorAll(".project");
+import { changeProject, showProjectInput } from "./projectEvent";
 
 window.addEventListener("DOMContentLoaded", () => {
+    const formShowButton = document.querySelector(".form-show");
+    const projects = document.querySelectorAll(".project");
+    const addProjectsButton = document.querySelector(".add-projects-button")
+
     formShowButton?.addEventListener("click", showForm);
 
     projects.forEach((project) => {
         project.addEventListener("click", changeProject)
     })
+
+    addProjectsButton?.addEventListener("click", showProjectInput);
 })

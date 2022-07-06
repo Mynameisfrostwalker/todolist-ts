@@ -131,6 +131,16 @@ function deleteTodo(name: string, index: number): void {
     }
 }
 
+function doesProjectExist(name: string) {
+    const key = Object.keys(projectsObj);
+    for(let i = 0; i < key.length; i++) {
+        if(key[i] === name) {
+            return true
+        }
+    }
+    return false;
+}
+
 
 export {  
     createProject,
@@ -140,5 +150,6 @@ export {
     replaceProject,
     getAllProjects, 
     correctDateProjects,
-    deleteTodo
+    deleteTodo,
+    doesProjectExist
  }
