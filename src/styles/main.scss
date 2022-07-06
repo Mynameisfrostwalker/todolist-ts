@@ -150,3 +150,8 @@ textarea {
 svg {
     pointer-events: none;
 }
+
+.blur.todo {
+    background-color: grey;
+    filter: blur(1px);
+}

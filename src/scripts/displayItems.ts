@@ -1,7 +1,7 @@
 import { formatDistanceToNow } from "date-fns";
 import { Items } from "./todo-items"
 import { getProject } from "./projects";
-import { deleteForm, editForm } from "./todoEvent";
+import { deleteForm, editForm, toggleComplete } from "./todoEvent";
 
 function getCurrentProject() {
     const project = document.querySelector(".active");
@@ -29,6 +29,7 @@ function createControls(item: Items) {
     input.checked = item.getProperty("complete") === "complete" ? true : false;
     input.name = "complete";
     input.id = "complete";
+    input.addEventListener("change", toggleComplete);
     controls.appendChild(input);
 
     const alterDiv = document.createElement("div");
@@ -168,10 +169,7 @@ function displayTodo() {
 }
 
 function displayEditedTodo(item: Items, element: HTMLElement) {
-    const projectName = getCurrentProject();
     const main = document.querySelector("main");
-    const add = document.querySelector(".add-item");
-
 
     const priority = item.getProperty("priority");
 

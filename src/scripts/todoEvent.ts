@@ -170,5 +170,27 @@ function editForm(e: Event) {
     }
 }
 
+function toggleComplete(e: Event) {
+    const element = e.target;
+    const projectName = getCurrentProject();
+    if(element instanceof HTMLInputElement) {
+        const parent = element.parentElement?.parentElement;
+        const id = parent?.id;
+        if(id && projectName) {
+            const project = getProject(projectName);
+            for(let i = 0; i < project.length; i++) {
+                if(id === project[i].getProperty("id")) {
+                    const complete = element.checked ? "complete" : "incomplete";
+                    project[i].setProperty("complete", complete);
+                    if(complete === "complete") {
+                        parent.classList.add("blur");
+                    } else {
+                        parent.classList.remove("blur");
+                    }
+                }
+            }
+        }
+    }
+}
 
-export { showForm, deleteForm, editForm }
+export { showForm, deleteForm, editForm, toggleComplete }
