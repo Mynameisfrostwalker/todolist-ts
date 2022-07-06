@@ -1,6 +1,6 @@
 import uniqid from "uniqid";
 import { displayTodo } from "./displayItems";
-import { createProject, doesProjectExist } from "./projects";
+import { createProject, doesProjectExist, deleteProject } from "./projects";
 
 
 function changeProject(e: Event) {
@@ -20,6 +20,19 @@ function changeProject(e: Event) {
     }
 }
 
+function deleteProjectDOM(e: Event) {
+    const element = e.target;
+    if(element instanceof HTMLElement) {
+        const parent = element.parentElement;
+        const id = parent?.id;
+        if(id) {
+            deleteProject(id);
+            parent.remove();
+        }
+
+    }
+}
+
 function submitInput(e: Event) {
     if(e instanceof KeyboardEvent) {
         if(e.key === "Enter") {
@@ -30,12 +43,13 @@ function submitInput(e: Event) {
             const iDiv = document.createElement("div");
             const i = document.createElement("i");
             i.classList.add("fas", "fa-window-close");
+            iDiv.addEventListener("click", deleteProjectDOM);
             iDiv.appendChild(i);
             
             if(input instanceof HTMLInputElement) {
                 const value = input?.value || uniqid(); 
                 if(doesProjectExist(value)) {
-                    input.value = "Name has been used!";
+                    input.value = "Name taken!";
                     return;
                 }
                 createProject(value);

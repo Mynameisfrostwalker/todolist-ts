@@ -150,8 +150,8 @@ input[type="checkbox"] {
     @include mixins.flex(row, center, space-between);
 
     input {
-        @include mixins.size(165px, null, false);
-        @include mixins.font(1rem);
+        @include mixins.size(calc(20px + 15vw), null, false);
+        @include mixins.font(calc(10px + 0.5vw));
 
         margin-left: 10px;     
     }
