@@ -167,5 +167,24 @@ function displayTodo() {
     }
 }
 
+function displayEditedTodo(item: Items, element: HTMLElement) {
+    const projectName = getCurrentProject();
+    const main = document.querySelector("main");
+    const add = document.querySelector(".add-item");
 
-export { displayTodo }
+
+    const priority = item.getProperty("priority");
+
+    const divItem = document.createElement("div");
+    divItem.classList.add("item");
+    divItem.classList.add(priority);
+    divItem.classList.add("todo");
+    divItem.id = item.getProperty("id");
+    divItem.appendChild(createInfo(item));
+    divItem.appendChild(createControls(item));
+    main?.replaceChild(divItem, element);
+
+}
+
+
+export { displayTodo, displayEditedTodo }

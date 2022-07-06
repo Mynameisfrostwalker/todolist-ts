@@ -1,5 +1,6 @@
 import { Items } from "./todo-items";
 import { getProject, updateProject } from "./projects";
+import { displayEditedTodo } from "./displayItems";
 
 
 function getCurrentProject() {
@@ -34,7 +35,6 @@ function submitForm(e: Event) {
 
         if(e.target instanceof HTMLFormElement) {
 
-            console.log(e.target[0]);
             const arr: string[] = [];
 
             for(let i = 0; i < 4; i++) {
@@ -80,8 +80,48 @@ function deleteForm(e: Event) {
 
 }
 
-function submitEditedForm() {
+function submitEditedForm(e: Event) {
+    e.preventDefault();
+    const projectName = getCurrentProject();
 
+    if(e.target instanceof HTMLFormElement) {
+
+        const arr: string[] = [];
+
+        for(let i = 0; i < 4; i++) {
+            const element = e.target[i]
+            if(element instanceof HTMLInputElement || element instanceof HTMLSelectElement || element instanceof HTMLTextAreaElement) {
+                arr[i] = element.value;
+                element.value = "";
+            }
+        }
+
+        const title = arr[0];
+        const dueDate = arr[1];
+        const priority = arr[2];
+        const description = arr[3];
+        const complete = e.target.parentElement?.getAttribute("data-complete");
+        const id = e.target.parentElement?.id;
+        const parent = e.target.parentElement;
+        let item: Items;
+        if(projectName) {
+            const projects = getProject(projectName);
+            for(let i = 0; i < projects.length; i++) {
+                if(id === projects[i].getProperty("id")) {
+                    projects[i].setProperty("title", title);
+                    projects[i].setProperty("dueDate", dueDate);
+                    projects[i].setProperty("description", description);
+                    projects[i].setProperty("priority", priority);
+                    projects[i].setProperty("complete", complete || "complete");
+                    item = projects[i];
+                    if(parent) {
+                        displayEditedTodo(item, parent);
+                    }
+                }
+            }
+        }
+    
+    }
 }
 
 function editForm(e: Event) {
@@ -123,6 +163,7 @@ function editForm(e: Event) {
                     }
                     form.setAttribute("data-complete", propArr[4]);
                     form.id = propArr[5];
+                    form.addEventListener("submit", submitEditedForm);
                 }
             }
         }
