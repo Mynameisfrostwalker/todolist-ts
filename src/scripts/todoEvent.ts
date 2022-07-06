@@ -116,6 +116,7 @@ function submitEditedForm(e: Event) {
                     item = projects[i];
                     if(parent) {
                         displayEditedTodo(item, parent);
+                        updateProject(projectName);
                     }
                 }
             }
