@@ -104,6 +104,33 @@ function getAllProjects(): ProjectsInterface {
     return Object.assign({}, projectsObj)
 }
 
+function deleteTodo(name: string, index: number): void {
+    if(name !== "today" && name !== "thisWeek") {
+        projectsObj[name].splice(index, 1);
+    } else {
+
+        const keys = Object.keys(projectsObj);
+    
+        for(let i = 0; i < keys.length; i++) {
+    
+            if(keys[i] !== name) {
+    
+                let key = projectsObj[keys[i]];
+    
+                for(let j = 0; j < key.length; j++) {
+    
+                    const obj = key[j];
+                    if(obj.getProperty("id") === projectsObj[name][index].getProperty("id")) {
+                        key.splice(j, 1);
+                    }
+    
+                }
+            }
+        }
+        projectsObj[name].splice(index, 1);
+    }
+}
+
 
 export {  
     createProject,
@@ -112,5 +139,6 @@ export {
     deleteProject,
     replaceProject,
     getAllProjects, 
-    correctDateProjects
+    correctDateProjects,
+    deleteTodo
  }

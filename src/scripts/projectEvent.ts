@@ -1,5 +1,6 @@
 import { displayTodo } from "./displayItems";
 
+
 function changeProject(e: Event) {
     const active = document.querySelector(".active");
     active?.classList.remove("active");

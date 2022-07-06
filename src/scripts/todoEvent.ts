@@ -1,5 +1,5 @@
 import { Items } from "./todo-items";
-import { getProject, updateProject } from "./projects";
+import { getProject, updateProject, deleteTodo } from "./projects";
 import { displayEditedTodo } from "./displayItems";
 
 
@@ -71,7 +71,7 @@ function deleteForm(e: Event) {
             for(let i = 0; i < project.length; i++) {
                 const item = project[i];
                 if(item.getProperty("id") === id) {
-                    project.splice(i, 1);
+                    deleteTodo(projectName, i);
                 }
             }
             updateProject(projectName);
