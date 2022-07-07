@@ -1,6 +1,6 @@
 import uniqid from "uniqid";
 import { displayTodo } from "./displayItems";
-import { createProject, doesProjectExist, deleteProject } from "./projects";
+import { createProject, doesProjectExist, deleteProject, updateProject } from "./projects";
 
 
 function changeProject(e: Event) {
@@ -21,6 +21,7 @@ function changeProject(e: Event) {
 }
 
 function deleteProjectDOM(e: Event) {
+    e.stopPropagation();
     const element = e.target;
     if(element instanceof HTMLElement) {
         const parent = element.parentElement;
@@ -29,7 +30,13 @@ function deleteProjectDOM(e: Event) {
             deleteProject(id);
             parent.remove();
         }
+    }
 
+    const active = document.querySelector(".active");
+    if(!active) {
+        const defaultProject = document.querySelector("#default");
+        defaultProject?.classList.add("active");
+        updateProject("default");
     }
 }
 
