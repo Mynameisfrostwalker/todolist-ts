@@ -1,6 +1,7 @@
 import { isToday, isThisWeek } from "date-fns";
 import { Items } from "./todo-items";
 import { displayTodo } from "./displayItems";
+import { setProjects } from "./localStorage";
 
 interface ProjectsInterface {
     [index: string]: Items[],
@@ -89,10 +90,13 @@ function updateProject(name: string, value?: Items): void {
         putIntoDateProjects(value);
     }
     displayTodo();
+    setProjects(projectsObj);
 }
 
 function deleteProject(name: string): void {
     delete projectsObj[name];
+    correctDateProjects();
+    setProjects(projectsObj);
 }
 
 function replaceProject(name: string, value: Items[]): void {
@@ -129,6 +133,7 @@ function deleteTodo(name: string, index: number): void {
         }
         projectsObj[name].splice(index, 1);
     }
+    setProjects(projectsObj);
 }
 
 function doesProjectExist(name: string) {
@@ -151,5 +156,6 @@ export {
     getAllProjects, 
     correctDateProjects,
     deleteTodo,
-    doesProjectExist
+    doesProjectExist, 
+    ProjectsInterface
  }

@@ -1,6 +1,6 @@
 import uniqid from "uniqid";
 import { displayTodo } from "./displayItems";
-import { createProject, doesProjectExist, deleteProject, updateProject } from "./projects";
+import { createProject, doesProjectExist, deleteProject, updateProject, getAllProjects } from "./projects";
 
 
 function changeProject(e: Event) {
@@ -81,5 +81,28 @@ function showProjectInput() {
     }
 }
 
+function showProjects() {
+    const obj = getAllProjects();
+    const keys = Object.keys(obj);
+    const ul = document.querySelector(".projects-list");
+    const li = document.querySelector(".add-projects-list");
+    for (let j = 0; j < keys.length; j++) {
+        if(keys[j] !== "default" && keys[j] !== "today" && keys[j] !== "thisWeek") {
+            const newli = document.createElement("li");
+            const iDiv = document.createElement("div");
+            const i = document.createElement("i");
+            i.classList.add("fas", "fa-window-close");
+            iDiv.addEventListener("click", deleteProjectDOM);
+            iDiv.appendChild(i);
+            newli.textContent = keys[j];
+            newli.id = keys[j];
+            newli.classList.add("project");
+            newli.appendChild(iDiv);
+            ul?.insertBefore(newli, li);
+            newli.addEventListener("click", changeProject);
+        }
+    }
+}
 
-export { changeProject, showProjectInput }
+
+export { changeProject, showProjectInput, showProjects }

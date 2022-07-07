@@ -10,6 +10,7 @@ module.exports = {
         displayItems: "./src/scripts/displayItems.ts",
         todoEvent: "./src/scripts/todoEvent.ts",
         projectEvent: "./src/scripts/projectEvent.ts",
+        localStorage: "./src/scripts/localStorage.ts",
     },
     module: {
         rules: [
